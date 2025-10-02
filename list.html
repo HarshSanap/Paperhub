@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}All Papers - Research Paper Platform{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Research Papers ({{ papers|length }})</h2>
+    
+    {% if papers %}
+        {% for paper in papers %}
+        <div class="paper-item">
+            <div class="paper-title">{{ paper[1] }}</div>
+            <div class="paper-author">Author: {{ paper[2] }}</div>
+            <div class="paper-keywords">Keywords: {{ paper[3] }}</div>
+            <div class="paper-summary">{{ paper[4] }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No papers uploaded yet. <a href="{{ url_for('index') }}">Upload your first paper</a>!</p>
+    {% endif %}
+</div>
+{% endblock %}

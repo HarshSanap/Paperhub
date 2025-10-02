@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard - PaperHub{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom: 0.5rem;">Welcome back, {{ session.username }}! 👋</h2>
+    <p style="margin-bottom: 0;">Here's an overview of your research collection.</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-number">{{ total_papers }}</div>
+        <div class="stat-label">Total Papers</div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-number">{{ papers|length }}</div>
+        <div class="stat-label">Recent Uploads</div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-number">📚</div>
+        <div class="stat-label">Research Hub</div>
+    </div>
+</div>
+
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3>Recent Papers</h3>
+        <a href="{{ url_for('upload_file') }}" class="btn">Upload New Paper</a>
+    </div>
+    
+    {% if papers %}
+        {% for paper in papers %}
+        <div class="paper-item">
+            <div class="paper-title">{{ paper[1] }}</div>
+            <div class="paper-author">Author: {{ paper[2] }}</div>
+            <div class="paper-keywords">Keywords: {{ paper[3] }}</div>
+            <div class="paper-summary">{{ paper[4] }}</div>
+        </div>
+        {% endfor %}
+        
+        {% if total_papers > 5 %}
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="{{ url_for('papers') }}" class="btn btn-outline">View All Papers</a>
+        </div>
+        {% endif %}
+    {% else %}
+        <div style="text-align: center; padding: 2rem; color: #6b7280;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📄</div>
+            <h3>No papers yet</h3>
+            <p>Upload your first research paper to get started!</p>
+            <a href="{{ url_for('upload_file') }}" class="btn" style="margin-top: 1rem;">Upload Paper</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

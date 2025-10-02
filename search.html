@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}Search Papers - PaperHub{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Search Your Papers</h2>
+    <p>Find papers by title, author, keywords, or content.</p>
+    
+    <form method="GET" class="search-box">
+        <input type="text" name="q" placeholder="Search your research papers..." value="{{ query }}" autofocus>
+        <button type="submit" class="btn">🔍 Search</button>
+    </form>
+</div>
+
+{% if query %}
+<div class="card">
+    <h3>Search Results for "{{ query }}"</h3>
+    <p style="color: #6b7280; margin-bottom: 1.5rem;">{{ papers|length }} papers found</p>
+    
+    {% if papers %}
+        {% for paper in papers %}
+        <div class="paper-item">
+            <div class="paper-title">{{ paper[1] }}</div>
+            <div class="paper-author">Author: {{ paper[2] }}</div>
+            <div class="paper-keywords">Keywords: {{ paper[3] }}</div>
+            <div class="paper-summary">{{ paper[4] }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div style="text-align: center; padding: 2rem; color: #6b7280;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+            <h3>No papers found</h3>
+            <p>Try different keywords or <a href="{{ url_for('papers') }}" style="color: #3b82f6;">browse all your papers</a>.</p>
+        </div>
+    {% endif %}
+</div>
+{% else %}
+<div class="card">
+    <div style="text-align: center; padding: 2rem; color: #6b7280;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+        <h3>Start Searching</h3>
+        <p>Enter keywords above to search through your research papers.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

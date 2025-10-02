@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}Welcome - PaperHub{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to PaperHub</h1>
+    <p>Your intelligent research paper management platform. Upload, analyze, and organize your academic papers with AI-powered insights.</p>
+    <a href="{{ url_for('register') }}" class="btn">Get Started</a>
+    <a href="{{ url_for('login') }}" class="btn btn-outline">Sign In</a>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">📄</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Smart Upload</h3>
+        <p style="font-size: 0.85rem;">Upload PDF papers and automatically extract key information.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Intelligent Search</h3>
+        <p style="font-size: 0.85rem;">Find papers quickly with powerful search capabilities.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">🏷️</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Auto Keywords</h3>
+        <p style="font-size: 0.85rem;">Generate relevant keywords and tags automatically.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">📝</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Smart Summaries</h3>
+        <p style="font-size: 0.85rem;">Get concise summaries of your research papers.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Personal Dashboard</h3>
+        <p style="font-size: 0.85rem;">Track your collection with intuitive statistics.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Secure & Private</h3>
+        <p style="font-size: 0.85rem;">Your papers are stored securely with authentication.</p>
+    </div>
+</div>
+{% endblock %}

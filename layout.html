@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Research Paper Platform{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <h1>📚 PaperHub</h1>
+            <div class="nav-links">
+                {% if session.user_id %}
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('upload_file') }}">Upload</a>
+                    <a href="{{ url_for('papers') }}">My Papers</a>
+                    <a href="{{ url_for('search') }}">Search</a>
+                    <div class="user-info">
+                        <span>Hello, {{ session.username }}!</span>
+                        <a href="{{ url_for('logout') }}" class="btn-secondary">Logout</a>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Sign Up</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message flash-success">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

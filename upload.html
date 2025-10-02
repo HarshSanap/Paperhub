@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}Upload Paper - PaperHub{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Upload Research Paper</h2>
+    <p>Upload a PDF research paper to automatically extract key information and add it to your collection.</p>
+    
+    <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📄</div>
+            <h3>Drop your PDF file here or click to browse</h3>
+            <input type="file" name="file" accept=".pdf" required id="fileInput" style="display: none;">
+            <p class="file-label" id="fileLabel">No file selected</p>
+            <button type="button" class="btn" onclick="document.getElementById('fileInput').click();" style="margin: 1rem 0;">Choose File</button>
+            <br>
+            <button type="submit" class="btn" id="uploadBtn" style="display: none;">Upload and Process</button>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <h3>What happens when you upload? ✨</h3>
+    <div class="features-grid" style="margin-top: 1rem;">
+        <div style="text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📄</div>
+            <strong>Text Extraction</strong>
+            <p style="font-size: 0.9rem; color: #6b7280;">Extract all text content from your PDF</p>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+            <strong>Auto Detection</strong>
+            <p style="font-size: 0.9rem; color: #6b7280;">Identify title and author automatically</p>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏷️</div>
+            <strong>Keywords</strong>
+            <p style="font-size: 0.9rem; color: #6b7280;">Generate relevant keywords and tags</p>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📝</div>
+            <strong>Summary</strong>
+            <p style="font-size: 0.9rem; color: #6b7280;">Create an automatic summary</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
